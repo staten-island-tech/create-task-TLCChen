@@ -8,11 +8,31 @@ async function getData(URl) {
 // getData(url1);
 // put in async function
 let x = 0;
-while (x != 9) {
-  x = Math.floor(Math.random() * 11);
-  console.log(x);
-  setTimeout(() => {
-    console.log("we waited 100 ms to run this code, oh boy wowwoowee!");
-  }, 100);
-  //   getData(`https://pokeapi.co/api/v2/pokemon/${x + 1}`);
+function call() {
+  while (x != 5) {
+    x = Math.floor(Math.random() * 6);
+    console.log(x);
+  }
 }
+//   getData(`https://pokeapi.co/api/v2/pokemon/${x + 1}`);
+
+function wait() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("ow");
+    }, 2000);
+  });
+}
+
+function doSomething() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // Other things to do before completion of the promise
+      console.log("Did something");
+      // The fulfillment value of the promise
+      resolve("https://example.com/");
+    }, 2000);
+  });
+}
+
+doSomething();
