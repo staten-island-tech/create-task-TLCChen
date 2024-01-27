@@ -1,0 +1,24 @@
+html, body, *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 10px;
+  }
+
+.bigbox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+    background-color: aqua;
+}
+
+.smallbox{
+    width: 48%;
+    height: 70%;
+    background-color: white;
+}
+img{
+    width: 20%;
+    image-rendering: pixelated;
+}
