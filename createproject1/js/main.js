@@ -1,43 +1,61 @@
 import { pokemons, bosses } from "./pokemon";
 
+let game = true;
+let ans = null;
+
 function subtraction(num1, num2) {
-  let ans = num1 - num2;
-  console.log(ans);
+  ans = num1 - num2;
+  console.log("this is", ans);
   console.log("What is", num1, " - ", num2);
   document.querySelector(".bar").insertAdjacentHTML(
     "afterbegin",
     `
-  <h2>What is ${num1} - ${num2}</h2>
-  `
+    <h2 class = "question" >What is ${num1} - ${num2}:</h2>
+    `
   );
 }
 
 function addition(num1, num2) {
-  let ans = num1 + num2;
-  console.log(ans);
+  ans = num1 + num2;
+  console.log("this is", ans);
   console.log("What is", num1, " + ", num2);
   document.querySelector(".bar").insertAdjacentHTML(
     "afterbegin",
     `
-  <h2>What is ${num1} + ${num2}</h2>
-  `
+      <h2 class = "question" >What is ${num1} + ${num2}:</h2>
+      `
   );
 }
 
-// pokemons.forEach((call) =>
-//   document.querySelector("#box2").insertAdjacentHTML(
-//     "afterbegin",
-//     `
-// <img src=${call.url} alt=${call.name}>
-// `
-//   )
-// );
-document
-  .querySelector("#box2")
-  .insertAdjacentHTML(
-    "afterbegin",
-    `<img src=${pokemons[1].url} alt=${pokemons[1].name}>`
-  );
+let itemBox = [];
+function deleted(bye) {
+  document.querySelectorAll(bye).forEach((item) => itemBox.push(item));
+  // console.log(itemBox);
+  itemBox.forEach((item) => item.remove());
+  itemBox = [];
+}
+
+document.querySelector(".btn").addEventListener("click", function () {
+  if (document.querySelector(".input").value == ans) {
+    game = true;
+  }
+  if (game) {
+    const random1 = Math.floor(Math.random() * pokemons.length);
+    console.log("this is", random1);
+    deleted(".imgs");
+    deleted(".question");
+    document
+      .querySelector("#box2")
+      .insertAdjacentHTML(
+        "afterbegin",
+        `<img class= "imgs" src=${pokemons[random1].url} alt=${pokemons[random1].name}>`
+      );
+    problems();
+    game = false;
+  }
+  document.querySelector(".input").value = "";
+  console.log("this value is", document.querySelector(".input").value);
+});
 
 function problems() {
   const random1 = Math.floor(Math.random() * 11);
@@ -62,5 +80,3 @@ function problems() {
   console.log(random1);
   console.log(random2);
 }
-
-problems();
