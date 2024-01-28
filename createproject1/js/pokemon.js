@@ -47,5 +47,5 @@ const bosses = [
     url: "Giratina.url",
   },
 ];
-
+ 
 export { pokemons, bosses };
