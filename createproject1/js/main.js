@@ -147,6 +147,32 @@ function picking() {
     console.log("bob");
   }
 }
+let used2 = [];
+function picking3() {
+  for (let i = 0; i <= pokemons.length; i++) {
+    used2.push(pokemons[i].name);
+  }
+  console.log(used2);
+}
 
-used = ["weedle", "bulbasaur", "caterpie", "charmander"];
-picking();
+function picking2() {
+  if (used.length > 0) {
+    while (cards != pokemons[ran].name) {
+      const ran = Math.floor(Math.random() * pokemons.length);
+      used.forEach((cards) => {
+        if (cards != pokemons[ran].name) {
+          again = false;
+          random0 = ran;
+        }
+      });
+      console.log(pokemons[ran].name);
+    }
+    console.log(random0);
+  } else {
+    random0 = Math.floor(Math.random() * pokemons.length);
+    console.log("bob");
+  }
+}
+
+monsters();
+picking3();
