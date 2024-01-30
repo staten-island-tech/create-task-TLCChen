@@ -44,8 +44,8 @@ const bosses = [
   },
   {
     name: "Giratina",
-    url: "Giratina.url",
+    url: "Giratina.png",
   },
 ];
- 
+
 export { pokemons, bosses };
