@@ -5,6 +5,7 @@ let game = true;
 let random0 = null;
 let ans = null;
 let itemBox = [];
+let pokemonslist = [];
 let used = [];
 let value = 0;
 let i = 0;
@@ -48,7 +49,7 @@ function monsters() {
       console.log(value);
     }
     if (game && value <= 10) {
-      picking();
+      pikmin();
       again = true;
       used.push(pokemons[random0].name);
       console.log(used);
@@ -129,33 +130,26 @@ function problems() {
   // console.log(random2);
 }
 console.log(used.length);
-function picking() {
+function pikmin() {
   if (used.length > 0) {
     while (again) {
       const ran = Math.floor(Math.random() * pokemons.length);
       used.forEach((cards) => {
         if (cards != pokemons[ran].name) {
-          again = false;
           random0 = ran;
+          again = false;
         }
       });
       console.log(pokemons[ran].name);
+      console.log(random0);
     }
-    console.log(random0);
   } else {
     random0 = Math.floor(Math.random() * pokemons.length);
     console.log("bob");
   }
 }
-let used2 = [];
-function picking3() {
-  for (let i = 0; i <= pokemons.length; i++) {
-    used2.push(pokemons[i].name);
-  }
-  console.log(used2);
-}
 
-function picking2() {
+function pikmin2() {
   if (used.length > 0) {
     while (cards != pokemons[ran].name) {
       const ran = Math.floor(Math.random() * pokemons.length);
@@ -174,5 +168,39 @@ function picking2() {
   }
 }
 
-monsters();
-picking3();
+let used2 = [];
+function pikmin3() {
+  for (let i = 0; i < pokemons.length; i++) {
+    used2.push(pokemons[i].name);
+  }
+  console.log(used2);
+}
+
+function monsters2() {
+  document.querySelector(".btn").addEventListener("click", function () {
+    if (parseInt(document.querySelector(".input").value) === ans) {
+      game = true;
+      value++;
+      console.log(value);
+    }
+    if (game && value <= 10) {
+      // getrid of pokemon before calling
+      const random1 = Math.floor(Math.random() * pokemonslist.length);
+      pokemonslist.splice(random1, 1);
+      deleted(".imgs");
+      deleted(".question");
+      document
+        .querySelector("#box2")
+        .insertAdjacentHTML(
+          "afterbegin",
+          `<img class= "imgs" src=${pokemons[random1].url} alt=${pokemons[random1].name}>`
+        );
+      problems();
+      game = false;
+    } else if (game && value > 10) {
+      boss();
+    }
+    document.querySelector(".input").value = "";
+    console.log("this value is", document.querySelector(".input").value);
+  });
+}
