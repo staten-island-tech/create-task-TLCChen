@@ -13,8 +13,6 @@ const length = pokemons.length;
 
 function subtraction(num1, num2) {
   ans = num1 - num2;
-  // console.log("this is", ans);
-  // console.log("What is", num1, " - ", num2);
   document.querySelector(".bar").insertAdjacentHTML(
     "afterbegin",
     `
@@ -25,8 +23,6 @@ function subtraction(num1, num2) {
 
 function addition(num1, num2) {
   ans = num1 + num2;
-  // console.log("this is", ans);
-  // console.log("What is", num1, " + ", num2);
   document.querySelector(".bar").insertAdjacentHTML(
     "afterbegin",
     `
@@ -37,11 +33,9 @@ function addition(num1, num2) {
 
 function deleted(bye) {
   document.querySelectorAll(bye).forEach((item) => itemBox.push(item));
-  // console.log(itemBox);
   for (let i = 0; i < itemBox.length; i++) {
     itemBox[i].remove();
   }
-  // itemBox.forEach((item) => item.remove());
   itemBox = [];
 }
 
@@ -56,7 +50,6 @@ function monsters2() {
       console.log(value);
     }
     if (game && value <= length - 1) {
-      // getrid of pokemon before calling
       const random1 = Math.floor(Math.random() * pokemons.length);
       deleted(".imgs");
       deleted(".question");
@@ -96,7 +89,6 @@ function boss() {
         .insertAdjacentHTML("afterbegin", `<img src="img/win2.webp" alt="">`);
     }
   }
-  //create list that has the previous monsters so that no previous ones are spawned. use while loop?
   if (game) {
     deleted(".imgs");
     deleted(".question");
@@ -111,8 +103,6 @@ function boss() {
   }
   document.querySelector(".input").value = "";
   console.log("this value is", document.querySelector(".input").value);
-  // document.querySelector(".btn").addEventListener("click", function () {
-  // });
 }
 
 function problems() {
@@ -135,8 +125,6 @@ function problems() {
     addition(random1, random2);
     console.log("addition");
   }
-  // console.log(random1);
-  // console.log(random2);
 }
 console.log(used.length);
 
@@ -149,72 +137,3 @@ function usedList() {
 
 usedList();
 monsters2();
-
-function pikmin2() {
-  if (used.length > 0) {
-    while (cards != pokemons[ran].name) {
-      const ran = Math.floor(Math.random() * pokemons.length);
-      used.forEach((cards) => {
-        if (cards != pokemons[ran].name) {
-          again = false;
-          random0 = ran;
-        }
-      });
-      console.log(pokemons[ran].name);
-    }
-    console.log(random0);
-  } else {
-    random0 = Math.floor(Math.random() * pokemons.length);
-    console.log("bob");
-  }
-}
-
-function pikmin() {
-  if (used.length > 0) {
-    while (again) {
-      const ran = Math.floor(Math.random() * pokemons.length);
-      used.forEach((cards) => {
-        if (cards != pokemons[ran].name) {
-          random0 = ran;
-          again = false;
-        }
-      });
-      console.log(pokemons[ran].name);
-      console.log(random0);
-    }
-  } else {
-    random0 = Math.floor(Math.random() * pokemons.length);
-    console.log("bob");
-  }
-}
-
-function monsters() {
-  document.querySelector(".btn").addEventListener("click", function () {
-    if (parseInt(document.querySelector(".input").value) === ans) {
-      game = true;
-      value++;
-      console.log(value);
-    }
-    if (game && value <= 10) {
-      pikmin();
-      again = true;
-      used.push(pokemons[random0].name);
-      console.log(used);
-      // console.log("this is", random1);
-      deleted(".imgs");
-      deleted(".question");
-      document
-        .querySelector("#box2")
-        .insertAdjacentHTML(
-          "afterbegin",
-          `<img class= "imgs" src=${pokemons[random0].url} alt=${pokemons[random0].name}>`
-        );
-      problems();
-      game = false;
-    } else if (game && value > 10) {
-      boss();
-    }
-    document.querySelector(".input").value = "";
-    console.log("this value is", document.querySelector(".input").value);
-  });
-}
