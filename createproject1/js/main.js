@@ -4,12 +4,11 @@ let game = true;
 let changing = true;
 let ans = null;
 let inputAnswer = null;
-let inputAns = null;
 let itemBox = [];
 let used = [];
 let value = 0;
 let i = 0;
-const length = pokemons.length;
+const length = pokemons.length - 7;
 
 function subtraction(num1, num2) {
   ans = num1 - num2;
@@ -31,78 +30,46 @@ function addition(num1, num2) {
   );
 }
 
-function deleted(bye) {
-  document.querySelectorAll(bye).forEach((item) => itemBox.push(item));
-  for (let i = 0; i < itemBox.length; i++) {
-    itemBox[i].remove();
-  }
-  itemBox = [];
-}
 function anser() {
   inputAnswer = parseInt(document.querySelector(".input").value);
   return inputAnswer;
 }
 
-function createMonsters() {
-  document.querySelector(".btn").addEventListener("click", function () {
-    const cat = anser();
-    console.log(cat);
-    inputAns = parseInt(document.querySelector(".input").value);
-    answer(inputAns);
-    if (document.querySelector(".btn").innerHTML != "Press to Answer") {
-      document.querySelector(".btn").innerHTML = "Press to Answer";
-      document.querySelector(".intro").remove();
-      document.querySelector(".center").insertAdjacentHTML(
-        "beforeend",
-        `
-      <img src="img/pokeball.png" alt="">
-      `
-      );
-      changing = false;
-    }
-    if (game && value <= length - 1) {
-      const random1 = Math.floor(Math.random() * pokemons.length);
-      deleted(".imgs");
-      deleted(".question");
-      document
-        .querySelector("#box2")
-        .insertAdjacentHTML(
-          "afterbegin",
-          `<img class= "imgs" src=${pokemons[random1].url} alt=${pokemons[random1].name}>`
-        );
-      console.log(pokemons[random1].name);
-      pokemons.splice(random1, 1);
-      problems();
-      game = false;
-    } else if (game && value > length - 1) {
-      boss();
-    }
-    document.querySelector(".input").value = "";
-    console.log("this value is", document.querySelector(".input").value);
-  });
-}
-
-function boss() {
-  if (
-    parseInt(document.querySelector(".input").value) === ans &&
-    value > length
-  ) {
+function boss(answer, img, question) {
+  if (answer === ans && value > length) {
     game = true;
     i++;
     console.log("this is i", i);
     if (i > bosses.length - 1) {
       game = false;
+      changing = true;
       console.log("end");
-      deleted(".imgs");
-      deleted(".question");
+      document.querySelectorAll(img).forEach((item) => itemBox.push(item));
+      for (let i = 0; i < itemBox.length; i++) {
+        itemBox[i].remove();
+      }
+      itemBox = [];
+      document.querySelectorAll(question).forEach((item) => itemBox.push(item));
+      for (let i = 0; i < itemBox.length; i++) {
+        itemBox[i].remove();
+      }
+      itemBox = [];
       document
         .querySelector("#box2")
         .insertAdjacentHTML("afterbegin", `<img src="img/win2.webp" alt="">`);
     }
   }
   if (game) {
-    deleted(".imgs");
-    deleted(".question");
+    document.querySelectorAll(img).forEach((item) => itemBox.push(item));
+    for (let i = 0; i < itemBox.length; i++) {
+      itemBox[i].remove();
+    }
+    itemBox = [];
+    document.querySelectorAll(question).forEach((item) => itemBox.push(item));
+    for (let i = 0; i < itemBox.length; i++) {
+      itemBox[i].remove();
+    }
+    itemBox = [];
     document
       .querySelector("#box2")
       .insertAdjacentHTML(
@@ -114,17 +81,6 @@ function boss() {
   }
   document.querySelector(".input").value = "";
   console.log("this value is", document.querySelector(".input").value);
-}
-
-function answer(value1) {
-  if (value1 === ans) {
-    game = true;
-    value++;
-    console.log(value1);
-    document.querySelector(".input").placeholder = "Input Math Answer Here";
-  } else if (value1 != ans && changing === false) {
-    document.querySelector(".input").placeholder = "Wrong Answer Try Again";
-  }
 }
 
 function problems() {
@@ -197,7 +153,7 @@ function createMonsters2(answer, img, question) {
     problems();
     game = false;
   } else if (game && value > length - 1) {
-    boss();
+    boss(answer, ".imgs", ".question");
   }
   document.querySelector(".input").value = "";
   console.log("this value is", document.querySelector(".input").value);
