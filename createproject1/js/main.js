@@ -1,11 +1,11 @@
 import { pokemons, bosses } from "./pokemon";
 
-let again = true;
 let game = true;
-let random0 = null;
+let changing = true;
 let ans = null;
+let inputAnswer = null;
+let inputAns = null;
 let itemBox = [];
-let pokemonslist = [];
 let used = [];
 let value = 0;
 let i = 0;
@@ -38,16 +38,27 @@ function deleted(bye) {
   }
   itemBox = [];
 }
+function anser() {
+  inputAnswer = parseInt(document.querySelector(".input").value);
+  return inputAnswer;
+}
 
-function monsters2() {
+function createMonsters() {
   document.querySelector(".btn").addEventListener("click", function () {
-    if (document.querySelector(".btn").innerHTML === "Press") {
-      document.querySelector(".btn").innerHTML = "Answer";
-    }
-    if (parseInt(document.querySelector(".input").value) === ans) {
-      game = true;
-      value++;
-      console.log(value);
+    const cat = anser();
+    console.log(cat);
+    inputAns = parseInt(document.querySelector(".input").value);
+    answer(inputAns);
+    if (document.querySelector(".btn").innerHTML != "Press to Answer") {
+      document.querySelector(".btn").innerHTML = "Press to Answer";
+      document.querySelector(".intro").remove();
+      document.querySelector(".center").insertAdjacentHTML(
+        "beforeend",
+        `
+      <img src="img/pokeball.png" alt="">
+      `
+      );
+      changing = false;
     }
     if (game && value <= length - 1) {
       const random1 = Math.floor(Math.random() * pokemons.length);
@@ -105,6 +116,17 @@ function boss() {
   console.log("this value is", document.querySelector(".input").value);
 }
 
+function answer(value1) {
+  if (value1 === ans) {
+    game = true;
+    value++;
+    console.log(value1);
+    document.querySelector(".input").placeholder = "Input Math Answer Here";
+  } else if (value1 != ans && changing === false) {
+    document.querySelector(".input").placeholder = "Wrong Answer Try Again";
+  }
+}
+
 function problems() {
   const random1 = Math.floor(Math.random() * 11);
   const random2 = Math.floor(Math.random() * 11);
@@ -128,12 +150,55 @@ function problems() {
 }
 console.log(used.length);
 
-function usedList() {
-  for (let i = 0; i < pokemons.length; i++) {
-    pokemonslist.push(pokemons[i].name);
-  }
-  console.log(pokemonslist);
-}
+document.querySelector(".btn").addEventListener("click", function () {
+  createMonsters2(anser(), ".imgs", ".question");
+});
 
-usedList();
-monsters2();
+function createMonsters2(answer, img, question) {
+  if (answer === ans) {
+    game = true;
+    value++;
+    console.log(answer);
+    document.querySelector(".input").placeholder = "Input Math Answer Here";
+  } else if (answer != ans && changing === false) {
+    document.querySelector(".input").placeholder = "Wrong Answer Try Again";
+  }
+  if (document.querySelector(".btn").innerHTML != "Press to Answer") {
+    document.querySelector(".btn").innerHTML = "Press to Answer";
+    document.querySelector(".intro").remove();
+    document.querySelector(".center").insertAdjacentHTML(
+      "beforeend",
+      `
+      <img src="img/pokeball.png" alt="">
+      `
+    );
+    changing = false;
+  }
+  if (game && value <= length - 1) {
+    const random1 = Math.floor(Math.random() * pokemons.length);
+    document.querySelectorAll(img).forEach((item) => itemBox.push(item));
+    for (let i = 0; i < itemBox.length; i++) {
+      itemBox[i].remove();
+    }
+    itemBox = [];
+    document.querySelectorAll(question).forEach((item) => itemBox.push(item));
+    for (let i = 0; i < itemBox.length; i++) {
+      itemBox[i].remove();
+    }
+    itemBox = [];
+    document
+      .querySelector("#box2")
+      .insertAdjacentHTML(
+        "afterbegin",
+        `<img class= "imgs" src=${pokemons[random1].url} alt=${pokemons[random1].name}>`
+      );
+    console.log(pokemons[random1].name);
+    pokemons.splice(random1, 1);
+    problems();
+    game = false;
+  } else if (game && value > length - 1) {
+    boss();
+  }
+  document.querySelector(".input").value = "";
+  console.log("this value is", document.querySelector(".input").value);
+}
