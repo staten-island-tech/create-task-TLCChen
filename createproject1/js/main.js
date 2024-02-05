@@ -56,7 +56,7 @@ function boss(answer, img, question) {
       itemBox = [];
       document
         .querySelector("#box2")
-        .insertAdjacentHTML("afterbegin", `<img src="img/win2.webp" alt="">`);
+        .insertAdjacentHTML("afterbegin", `<img src="win2.webp" alt="">`);
     }
   }
   if (game) {
@@ -121,7 +121,7 @@ function createMonsters(answer, img, question) {
     document.querySelector(".center").insertAdjacentHTML(
       "beforeend",
       `
-      <img src="img/pokeball.png" alt="">
+      <img src="pokeball.png" alt="">
       `
     );
     changing = false;
