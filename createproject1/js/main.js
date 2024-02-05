@@ -8,7 +8,7 @@ let itemBox = [];
 let used = [];
 let value = 0;
 let i = 0;
-const length = pokemons.length - 7;
+const length = pokemons.length;
 
 function subtraction(num1, num2) {
   ans = num1 - num2;
@@ -30,7 +30,7 @@ function addition(num1, num2) {
   );
 }
 
-function anser() {
+function answer() {
   inputAnswer = parseInt(document.querySelector(".input").value);
   return inputAnswer;
 }
@@ -106,11 +106,7 @@ function problems() {
 }
 console.log(used.length);
 
-document.querySelector(".btn").addEventListener("click", function () {
-  createMonsters2(anser(), ".imgs", ".question");
-});
-
-function createMonsters2(answer, img, question) {
+function createMonsters(answer, img, question) {
   if (answer === ans) {
     game = true;
     value++;
@@ -158,3 +154,7 @@ function createMonsters2(answer, img, question) {
   document.querySelector(".input").value = "";
   console.log("this value is", document.querySelector(".input").value);
 }
+
+document.querySelector(".btn").addEventListener("click", function () {
+  createMonsters(answer(), ".imgs", ".question");
+});
