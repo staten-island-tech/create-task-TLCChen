@@ -1,0 +1,95 @@
+html, body, *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 10px;
+  }
+
+body{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../img/mountainbg.avif");
+    image-rendering: pixelated;
+}
+
+.center{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem auto;
+    padding: 2rem;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 90vw;
+    height: 40vh;
+}
+
+.center img{
+    height: 70%;
+    width: auto;
+}
+
+h2{
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.bigbox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+    height: 40vh;
+}
+
+.smallbox{
+    width: 48%;
+    height: 95%;
+   
+}
+
+.bar{
+    width: 90vw;
+    padding: 3rem;
+    text-align: center;
+    height: 20vh;
+}
+
+img{
+    height: 90%;
+    image-rendering: pixelated;
+}
+
+.bar, .smallbox, .center{
+    background-color: rgb(170, 169, 169, 0.7);
+    border: 0.1rem solid black;
+    margin: .1rem auto;
+}
+
+.btn, input{
+    width: 15rem;
+    height: 4rem;
+    line-height: 1.5;
+    text-align: center;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    border-color: #0d6efd;
+}
+
+p{
+    font-size: 3rem;
+}
+
+.input{
+    width: 15rem;
+    height: 4rem;
+    line-height: 1.5;
+    text-align: center;
+    border: 1px solid transparent;
+    padding: 6px 9px;
+    font-size: 1.2rem;
+    border-radius: .5rem;
+    border-color: #0d6efd;
+}
