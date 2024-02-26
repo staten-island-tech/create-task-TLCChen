@@ -147,9 +147,6 @@ function usedList() {
   console.log(pokemonslist);
 }
 
-usedList();
-monsters2();
-
 function pikmin2() {
   if (used.length > 0) {
     while (cards != pokemons[ran].name) {
@@ -218,3 +215,80 @@ function monsters() {
     console.log("this value is", document.querySelector(".input").value);
   });
 }
+
+function wait() {
+  return new Promise((cake) => {
+    setTimeout(() => {
+      cake("apple");
+    }, 500);
+  });
+}
+function doSomething() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // Other things to do before completion of the promise
+      console.log("Did something");
+      // The fulfillment value of the promise
+      resolve("https://example.com/");
+    }, 900);
+  });
+}
+
+function learning() {
+  new Promise((resolve, reject) => {
+    if (error) {
+      reject("oh BROTHER");
+    }
+    resolve("hooray");
+  });
+}
+// learning();
+// call();
+
+async function asyncCall() {
+  console.log("calling");
+  try {
+    const hi = await wait();
+    console.log(hi);
+  } catch {
+    console.log("oh no. it broke");
+  }
+  // Expected output: "resolved"
+}
+
+let myPromise = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve("foo");
+  }, 700);
+});
+
+function why() {
+  return new Promise((calling) =>
+    setTimeout(() => {
+      calling("cats");
+    }, 500)
+  );
+}
+
+async function call() {
+  let o = 0;
+  while (o < 4) {
+    console.log(o, "apples.");
+    o++;
+    await why();
+  }
+}
+
+call();
+
+function time(year, month, day, year2, month2, day2) {
+  const number = 24 * 60 * 60 * 1000;
+  const date = new Date(year, month, day);
+  const date2 = new Date(year2, month2, day2);
+
+  const ans3 = date - date2;
+  const cat = Math.round(Math.abs(ans3 / number));
+  console.log(cat);
+}
+
+time(2021, 3, 24, 2021, 1, 29);
